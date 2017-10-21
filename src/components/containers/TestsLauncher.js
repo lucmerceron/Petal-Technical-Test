@@ -9,20 +9,22 @@ const calculateTimeDiff = (start, end) => end.diff(start, 's', true)
 
 const mapStateToProps = state => {
   const testsState = state.tests
-  const defaultObj = { passedTests: [], failedTests: [], runningTests: 0 }
+  const defaultObj = { passedTests: [], failedTests: [], runningTests: [] }
 
   if (!testsState.startTime) return { tests: { testList, ...defaultObj } }
   const results = testList.reduce((acc, test) => {
     const newAcc = { ...acc }
     const result = testsState.results[test.id]
 
-    if (!result) newAcc.runningTests += 1
+    if (!result) newAcc.runningTests.push(test)
     else if (result.passed) {
       newAcc.passedTests.push({ ...test,
         time: calculateTimeDiff(testsState.startTime, result.finishTime),
       })
     } else {
-      newAcc.failedTests.push(test)
+      newAcc.failedTests.push({ ...test,
+        time: calculateTimeDiff(testsState.startTime, result.finishTime),
+      })
     }
 
     return newAcc

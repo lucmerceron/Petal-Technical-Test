@@ -16,14 +16,14 @@ const initState = {
 export default function tests(state = initState, action) {
   switch (action.type) {
     case START_TESTS:
-      return { ...state,
+      return { ...initState,
         startTime: moment(),
       }
     case FINISH_TEST: {
       return { ...state,
         results: { ...state.results,
           [action.testId]: {
-            passed: [action.passed],
+            passed: action.passed,
             finishTime: moment(),
           },
         },
