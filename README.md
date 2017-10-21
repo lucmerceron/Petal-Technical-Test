@@ -69,6 +69,3 @@ $ npm start       Start the server in development mode (port 3000)
 $ npm run test    Launch the tests using jest in watch mode
 $ npm run lint    Launch eslint on the /src folder
 ```
-
-## Information
-
