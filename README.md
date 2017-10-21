@@ -69,3 +69,7 @@ $ npm start       Start the server in development mode (port 3000)
 $ npm run test    Launch the tests using jest in watch mode
 $ npm run lint    Launch eslint on the /src folder
 ```
+
+## Information
+
+This application is more like a Hackathon than a well thought application as the test duration was limited to 2 hours. Therefore there are no tests, no css and separation of concerns could have been done better.

@@ -9,7 +9,7 @@ import {
 const initState = {
   startTime: null, // <Date>
   results: {
-    // [id]: { passed: <bool>, finishTime: <Date> }
+    // [testId]: { passed: <bool>, finishTime: <Date> }
   },
 }
 
@@ -30,6 +30,7 @@ export default function tests(state = initState, action) {
       }
     }
     case RESET_TESTS:
+      // To better the application, cancelable-promise could be use to reset the tests
       return { ...initState }
     default:
       return state

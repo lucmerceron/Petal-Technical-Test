@@ -4,7 +4,6 @@ import { startTests, finishTest, resetTests } from '../../actionCreators/tests'
 import TestsLauncher from '../presentationals/TestsLauncher'
 import testList from '../../constants/testList'
 
-// this could be memoized
 const calculateTimeDiff = (start, end) => end.diff(start, 's', true)
 
 const mapStateToProps = state => {
