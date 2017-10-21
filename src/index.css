@@ -16,8 +16,8 @@ body {
 #root {
   display: flex;
   flex-flow: row wrap;
-  justify-content: center;
   overflow: auto;
+  margin-left: 200px;
 }
 
 .material-icons {

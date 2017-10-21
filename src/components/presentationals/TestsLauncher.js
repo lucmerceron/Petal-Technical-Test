@@ -16,7 +16,7 @@ class TestsLauncher extends React.Component {
     return (
       <ul className="tests-launcher-first-display">
         {tests.testList.map(test => (
-          <li key={test.id}>{test.description}</li>
+          <li key={test.id}>[TEST] {test.description}</li>
         ))}
       </ul>
     )
@@ -25,21 +25,28 @@ class TestsLauncher extends React.Component {
     const { tests } = this.props
 
     return (
-      <ul className="tests-launcher-results">
-        {tests.passedTests.map(test => (
-          <li key={test.id} className="tests-launcher-results-pass">
-            [PASS] {test.description} : {test.time}
-          </li>
-        ))}
-        {tests.failedTests.map(test => (
-          <li key={test.id} className="tests-launcher-results-fail">
-            [FAIL] {test.description} : {test.time}
-          </li>
-        ))}
-        {tests.runningTests.map(test => (
-          <li key={test.id}>...</li>
-        ))}
-      </ul>
+      <div>
+        <div className="tests-launcher-meta">
+          <p>Passed: {tests.passedTests.length}</p>
+          <p>Failed: {tests.failedTests.length}</p>
+          <p>Running: {tests.runningTests.length}</p>
+        </div>
+        <ul className="tests-launcher-results">
+          {tests.passedTests.map(test => (
+            <li key={test.id} className="tests-launcher-results-pass">
+              [PASS] {test.description} : {test.time}
+            </li>
+          ))}
+          {tests.failedTests.map(test => (
+            <li key={test.id} className="tests-launcher-results-fail">
+              [FAIL] {test.description} : {test.time}
+            </li>
+          ))}
+          {tests.runningTests.map(test => (
+            <li key={test.id}>Running...</li>
+          ))}
+        </ul>
+      </div>
     )
   }
   startEveryTests() {
@@ -47,7 +54,7 @@ class TestsLauncher extends React.Component {
 
     /* 
     * These instructions are not instantaneous but are enough
-    * for our level of time precision
+    * for our time precision level
     */
     tests.testList.forEach(test => {
       test.run(passed => finishTest(test.id, passed))
@@ -72,6 +79,7 @@ class TestsLauncher extends React.Component {
     return (
       <div className="tests-launcher">
         {getCorrectButton()}
+        {/* getResults & getFirstDisplay could be pure components */}
         {testRunning || testPassed ? this.getResults() : this.getFirstDisplay() }
       </div>
     )
