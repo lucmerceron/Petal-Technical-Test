@@ -1,3 +1,5 @@
+import moment from 'moment'
+
 import {
   START_TESTS,
   FINISH_TEST,
@@ -7,7 +9,7 @@ import {
 const initState = {
   startTime: null, // <Date>
   results: {
-    // [id]: { result: <bool>, finishTime: <Date> }
+    // [id]: { passed: <bool>, finishTime: <Date> }
   },
 }
 
@@ -15,14 +17,14 @@ export default function tests(state = initState, action) {
   switch (action.type) {
     case START_TESTS:
       return { ...state,
-        startTime: new Date(),
+        startTime: moment(),
       }
     case FINISH_TEST: {
       return { ...state,
         results: { ...state.results,
           [action.testId]: {
-            result: [action.result],
-            finishTime: new Date(),
+            passed: [action.passed],
+            finishTime: moment(),
           },
         },
       }
