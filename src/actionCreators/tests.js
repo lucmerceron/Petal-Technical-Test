@@ -7,7 +7,7 @@ export const RESET_TESTS = 'RESET_TESTS'
 
 /* Action creators */
 export const startTests = makeActionCreator(START_TESTS)
-export const finishTest = makeActionCreator(FINISH_TEST, 'testId')
+export const finishTest = makeActionCreator(FINISH_TEST, 'testId', 'result')
 export const resetTests = makeActionCreator(RESET_TESTS)
 
 /* Thunk action creators */
